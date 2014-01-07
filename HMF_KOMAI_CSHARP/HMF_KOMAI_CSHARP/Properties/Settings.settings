@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HMF_KOMAI_CSHARP.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AZURE_CLIENT_ID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">edd8facd-055c-4537-87db-f05d01f56b03</Value>
+    </Setting>
+    <Setting Name="AZURE_CLIENT_SECRET" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SzxqK/wlQKCG6VPUg7AlF+XNhFzoIzcqb/Cb8vy+buo</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

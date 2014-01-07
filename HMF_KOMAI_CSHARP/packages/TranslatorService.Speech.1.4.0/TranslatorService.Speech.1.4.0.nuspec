@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TranslatorService.Speech</id>
+    <version>1.4.0</version>
+    <title>Text-To-Speech Library</title>
+    <authors>Marco Minerva</authors>
+    <owners>Marco Minerva</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>http://translatorservice.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This library adds Text-To-Speech (speech synthesis) capabilities to your applications. It uses Microsoft Translator Service to obtain streams of wave-file speaking text in the desired language.  There are 44 supported languages, including English, Italian, German, French, Spanish, Japanese and Chinese.
+The library is currently available for .NET 4.0, Windows Phone and WinRT.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>Text-To-Speech</tags>
+  </metadata>
+</package>

@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TranslatorService.Speech</name>
+    </assembly>
+    <members>
+        <member name="T:TranslatorService.Speech.SpeechEventArgs">
+            <summary>
+            Provides data for the <em>MethodName</em><strong>Completed</strong> event.
+            </summary>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>SpeechEventArgs</strong> class.
+            </summary>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>SpeechEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechEventArgs.ReturnValue``1(``0)">
+            <summary>
+            Returns the passed value, if the <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"/> property is a <strong>null</strong> reference (<strong>Nothing</strong> in Visual Basic); otherwise, it will raise a <see cref="T:System.Reflection.TargetInvocationException"/>with its <see cref="P:System.Exception.InnerException"/> property holding a reference to <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"></see>.
+            </summary>
+            <typeparam name="T">The type of the property to be returned.</typeparam>
+            <param name="value">The value of the property to be return if <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"/> property is a <strong>null</strong> reference (<strong>Nothing</strong> in Visual Basic).</param>
+            <returns>The passed <paramref name="value"/>, if the <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"/> property is a <strong>null</strong> reference (<strong>Nothing</strong> in Visual Basic); otherwise, it will raise a <see cref="T:System.Reflection.TargetInvocationException"/>with its <see cref="P:System.Exception.InnerException"/> property holding a reference to <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"></see>.</returns>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechEventArgs.Error">
+            <summary>
+            Gets a value indicating which error occurred during an asynchronous operation.
+            </summary>
+            <value>An <see cref="T:System.Exception"/> instance, if an error occurred during an asynchronous operation; otherwise a <strong>null</strong> reference (<strong>Nothing</strong> in Visual Basic).</value>
+            <remarks><para>If an exception is raised during an asynchronous operation, the class will assign the exception to the <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"/> property. The client application's event-handler delegate should check the <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"/> property before accessing any properties in a class derived from <see cref="T:TranslatorService.Speech.SpeechEventArgs"/>; otherwise, the property will raise a <see cref="T:System.Reflection.TargetInvocationException"/>with its <see cref="P:System.Exception.InnerException"/> property holding a reference to <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"></see>.</para>
+            <para>The value of the <see cref="P:TranslatorService.Speech.SpeechEventArgs.Error"></see> property is a <strong>null</strong> reference (<strong>Nothing</strong> in Visual Basic) if no error has been raised.</para></remarks>
+        </member>
+        <member name="M:TranslatorService.Speech.GetAccessTokenEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>GetAccessTokenEventArgs</strong> class.
+            </summary>
+        </member>
+        <member name="M:TranslatorService.Speech.GetAccessTokenEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetAccessTokenEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+        </member>
+        <member name="M:TranslatorService.Speech.GetAccessTokenEventArgs.#ctor(TranslatorService.Speech.AdmAccessToken)">
+            <summary>
+            Initializes a new instance of the <strong>GetAccessTokenEventArgs</strong> class using the specified <see cref="T:TranslatorService.Speech.AdmAccessToken"/> object.
+            </summary>
+            <param name="accessToken">Contains the access token that you need to use to access the Microsoft Translator API.</param>
+        </member>
+        <member name="M:TranslatorService.Speech.GetAccessTokenEventArgs.#ctor(TranslatorService.Speech.AdmAccessToken,System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetAccessTokenEventArgs</strong> class using the specified <see cref="T:TranslatorService.Speech.AdmAccessToken"/> object and <see cref="T:System.Exception"/>.
+            </summary>
+            <param name="accessToken">Contains the access token that you need to use to access the Microsoft Translator API.</param>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+        </member>
+        <member name="P:TranslatorService.Speech.GetAccessTokenEventArgs.AccessToken">
+            <summary>
+            Gets <see cref="T:TranslatorService.Speech.AdmAccessToken"/> object that contains the access token that you need to use to access the Microsoft Translator API.
+            </summary>
+            <value>The <see cref="T:TranslatorService.Speech.AdmAccessToken"/> object that contains the access token that you need to use to access the Microsoft Translator API.</value>
+        </member>
+        <member name="T:TranslatorService.Speech.SpeakStreamFormat">
+            <summary>
+            Specifies the audio format of the retrieved audio stream.
+            </summary>
+        </member>
+        <member name="F:TranslatorService.Speech.SpeakStreamFormat.Wave">
+            <summary>
+            Uses the WAVE file format.
+            </summary>
+        </member>
+        <member name="F:TranslatorService.Speech.SpeakStreamFormat.MP3">
+            <summary>
+            Uses the MP3 file format.
+            </summary>
+        </member>
+        <member name="T:TranslatorService.Speech.SpeakStreamQuality">
+            <summary>
+            Specifies the audio quality of the retrieved audio stream.
+            </summary>
+        </member>
+        <member name="F:TranslatorService.Speech.SpeakStreamQuality.MaxQuality">
+            <summary>
+            Uses the max available quality.
+            </summary>
+        </member>
+        <member name="F:TranslatorService.Speech.SpeakStreamQuality.MinSize">
+            <summary>
+            Retrieves audio file with the minimum size.
+            </summary>
+        </member>
+        <member name="T:TranslatorService.Speech.SpeechSynthesizer">
+            <summary>
+            The <strong>SpeechSynthesizer</strong> class provides methods to retrieve stream of audio file speaking text in various supported languages.
+            </summary>
+            <remarks>
+            <para>To use this library, you need to go to <strong>Azure DataMarket</strong> at https://datamarket.azure.com/developer/applications and register your application. In this way, you'll obtain the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> and <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> that are necessary to use <strong>Microsoft Translator Service</strong>.</para>
+            <para>You also need to go to https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb and subscribe the <strong>Microsoft Translator Service</strong>. There are many options, based on the amount of characters per month. The service is free up to 2 million characters per month.</para>
+            </remarks>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <strong>SpeechSynthesizer</strong> class, using the specified Client ID and Client Secret and the current system language.
+            </summary>
+            <param name="clientID">The Application Client ID.
+            </param>
+            <param name="clientSecret">The Application Client Secret.
+            </param>
+            <remarks><para>You must register your application on <strong>Azure DataMarket</strong> at https://datamarket.azure.com/developer/applications to obtain the Client ID and Client Secret needed to use the service.</para>
+            <para>You also need to go to https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb and subscribe the <strong>Microsoft Translator Service</strong>. There are many options, based on the amount of characters per month. The service is free up to 2 million characters per month.</para>
+            </remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/>        
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <strong>SpeechSynthesizer</strong> class, using the specified Client ID and Client Secret and the desired language.
+            </summary>
+            <param name="clientID">The Application Client ID.
+            </param>
+            <param name="clientSecret">The Application Client Secret.
+            </param>
+            <param name="language">A string representing the supported language code to speak the text in. The code must be present in the list of codes returned from the method <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>.</param>
+            <remarks><para>You must register your application on <strong>Azure DataMarket</strong> at https://datamarket.azure.com/developer/applications to obtain the Client ID and Client Secret needed to use the service.</para>
+            <para>You also need to go to https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb and subscribe the <strong>Microsoft Translator Service</strong>. There are many options, based on the amount of characters per month. The service is free up to 2 million characters per month.</para>
+            </remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/>        
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync">
+            <summary>
+            Retrieves the languages available for speech synthesis.
+            </summary>
+            <exception cref="T:System.ArgumentException">The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</exception>
+            <remarks><para>This method performs a non-blocking request. When the operation completes, the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512415.aspx.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String)">
+            <summary>
+            Translates a text string into the language specified in the <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property.
+            </summary>
+            <returns>A string representing the translated text.</returns>
+            <param name="text">A string representing the text to translate.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non-blocking request for translation. When the operation completes, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512421.aspx.
+            </para>
+            </remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> 
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)">
+            <summary>
+            Translates a text string into the specified language.
+            </summary>
+            <returns>A string representing the translated text.</returns>
+            <param name="text">A string representing the text to translate.</param>
+            <param name="to">A string representing the language code to translate the text into. The code must be present in the list of codes returned from the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/> method.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non-blocking request for translation. When the operation completes, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512421.aspx.
+            </para>
+            </remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> 
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)">
+            <summary>
+            Detects the language of a text. 
+            </summary>
+            <param name="text">A string represeting the text whose language must be detected.</param>
+            <returns>A string containing a two-character Language code for the given text. </returns>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non-blocking request for language code. When the operation completes, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageCompleted"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512427.aspx.
+            </para></remarks>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>   
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String)">
+            <summary>
+            Returns a stream of a file speaking the passed-in text. If <see cref="P:TranslatorService.Speech.SpeechSynthesizer.AutoDetectLanguage"/> property is set to <strong>true</strong>, the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method is used to detect the language of the speech stream. Otherwise, the language specified in the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property is used.  
+            </summary>
+            <param name="text">A string containing the sentence to be spoken.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non-blocking request for the stream. When the operation completes, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512420.aspx.
+            </para></remarks>
+            <seealso cref="T:System.IO.Stream"/>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>        
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)">
+            <summary>
+            Returns a stream of a file speaking the passed-in text in the desired language. If <paramref name="language"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) and the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.AutoDetectLanguage"/> property is set to <strong>true</strong>, the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method is used to detect the language of the speech stream. Otherwise, the language specified in the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property is used.
+            </summary>
+            <param name="text">A string containing the sentence to be spoken.</param>
+            <param name="language">A string representing the language code to speak the text in. The code must be present in the list of codes returned from the method <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non-blocking request for the stream. When the operation completes, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512420.aspx.
+            </para></remarks>
+            <seealso cref="T:System.IO.Stream"/>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.SpeakAsync(System.String)">
+            <summary>
+            Speaks the passed-in text. If <see cref="P:TranslatorService.Speech.SpeechSynthesizer.AutoDetectLanguage"/> property is set to <strong>true</strong>, the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method is used to detect the language of the speech stream. Otherwise, the language specified in the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property is used.   
+            </summary>
+            <param name="text">A string containing the sentence to be spoken.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks><para>This method perform a non blocking speaking.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512420.aspx.
+            </para></remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>  
+        </member>
+        <member name="M:TranslatorService.Speech.SpeechSynthesizer.SpeakAsync(System.String,System.String)">
+            <summary>
+            Speaks the passed-in text. If <paramref name="language"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) and the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.AutoDetectLanguage"/> property is set to <strong>true</strong>, the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method is used to detect the language of the speech stream. Otherwise, the language specified in the <see cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property is used.
+            </summary>
+            <param name="text">A string containing the sentence to be spoken.</param>
+            <param name="language">A string representing the supported language codes to speak the text in. The code must be present in the list of codes returned from the method <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>.</param>
+            <exception cref="T:System.ArgumentException">
+            <list type="bullet">
+            <term>The <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientID"/> or <see cref="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret"/> properties haven't been set.</term>
+            <term>The <paramref name="text"/> parameter is longer than 1000 characters.</term>
+            </list>
+            </exception>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="text"/> parameter is <strong>null</strong> (<strong>Nothing</strong> in Visual Basic) or empty.</exception>
+            <remarks>
+            <para>This method perform a non blocking speaking. If this operation fails, the <see cref="E:TranslatorService.Speech.SpeechSynthesizer.SpeakFailed"/> event is raised.</para>
+            <para>For more information, go to http://msdn.microsoft.com/en-us/library/ff512420.aspx.
+            </para></remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>        
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.SpeakFailed"/>
+        </member>
+        <member name="E:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesCompleted">
+            <summary>
+            Occurs when an asynchronous request for supported languages completes;
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted">
+            <summary>
+            Occurs when an asynchronous request for a stream with speech completes.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/>
+        </member>
+        <member name="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted">
+            <summary>
+            Occurs when translation completes.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="E:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageCompleted">
+            <summary>
+            Occurs when language detection completes.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/>
+        </member>
+        <member name="E:TranslatorService.Speech.SpeechSynthesizer.SpeakFailed">
+            <summary>
+            Occurs when a speak operation fails.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.SpeakAsync(System.String,System.String)"/>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.ClientID">
+            <summary>
+            Gets or sets the Application Client ID that is necessary to use <strong>Microsoft Translator Service</strong>.
+            </summary>
+            <value>The Application Client ID.</value>
+            <remarks>
+            <para>Go to <strong>Azure DataMarket</strong> at https://datamarket.azure.com/developer/applications to register your application and obtain a Client ID.</para>
+            <para>You also need to go to https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb and subscribe the <strong>Microsoft Translator Service</strong>. There are many options, based on the amount of characters per month. The service is free up to 2 million characters per month.</para>
+            </remarks>        
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.ClientSecret">
+            <summary>
+            Gets or sets the Application Client Secret that is necessary to use <strong>Microsoft Translator Service</strong>.
+            </summary>
+            <remarks>
+            <value>The Application Client Secret.</value>
+            <para>Go to <strong>Azure DataMaket</strong> at https://datamarket.azure.com/developer/applications to register your application and obtain a Client Secret.</para>
+            <para>You also need to go to https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb and subscribe the <strong>Microsoft Translator Service</strong>. There are many options, based on the amount of characters per month. The service is free up to 2 million characters per month.</para>
+            </remarks>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.Language">
+            <summary>
+            Gets or sets the string representing the supported language code to speak the text in.
+            </summary>
+            <value>The string representing the supported language code to speak the text in. The code must be present in the list of codes returned from the method <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>.</value>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.AudioFormat">
+            <summary>
+            Gets or sets the audio format of the retrieved audio stream. Currently, <strong>Wav</strong> and <strong>MP3</strong> are supported.
+            </summary>
+            <value>The audio format of the retrieved audio stream. Currently, <strong>Wav</strong> and <strong>MP3</strong> are supported.</value>
+            <remarks>The default value is <strong>Wave</strong>.</remarks>        
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.AudioQuality">
+            <summary>
+            Gets or sets the audio quality of the retrieved audio stream. Currently, <strong>MaxQuality</strong> and <strong>MinSize</strong> are supported.
+            </summary>
+            <value>The audio quality of the retrieved audio stream. Currently, <strong>MaxQuality</strong> and <strong>MinSize</strong> are supported.</value>
+            <remarks>
+            With <strong>MaxQuality</strong>, you can get the voice with the highest quality, and with <strong>MinSize</strong>, you can get the voices with the smallest size. The default value is <strong>MinSize</strong>.
+            </remarks>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.AutomaticTranslation">
+            <summary>
+            Gets or sets a value indicating whether the sentence to be spoken must be translated in the specified language.
+            </summary>
+            <value><strong>true</strong> if the sentence to be spoken must be translated in the specified language; otherwise, <strong>false</strong>.</value>
+            <remarks>If you don't need to translate to text to be spoken, you can speed-up the the library setting the <strong>AutomaticTranslation</strong> property to <strong>false</strong>. In this way, the specified text is passed as is to the other methods, without performing any translation. The default value is <strong>true</strong>.</remarks>
+        </member>
+        <member name="P:TranslatorService.Speech.SpeechSynthesizer.AutoDetectLanguage">
+            <summary>
+            Gets or sets a value indicating whether the language of the text must be automatically detected before text-to-speech.
+            </summary>
+            <value><strong>true</strong> if the language of the text must be automatically detected; otherwise, <strong>false</strong>.</value>
+            <remarks>The <strong>AutoDetectLanguage</strong> property is used when the following methods are invoked:
+            <list type="bullet">
+            <term><see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String)"/></term>
+            <term><see cref="M:TranslatorService.Speech.SpeechSynthesizer.SpeakAsync(System.String)"/></term>
+            </list>
+            <para>When these methods are called, if the <strong>AutoDetectLanguage</strong> property is set to <strong>true</strong>, the language of the text is auto-detected before speech stream request. Otherwise, the language specified in the <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/> property is used.</para>
+            <para>If the language to use is explicitly specified, using the versions of the methods that accept it, no auto-detection is performed.</para>
+            <para>The default value is <strong>true</strong>.</para>
+            </remarks>
+            <seealso cref="P:TranslatorService.Speech.SpeechSynthesizer.Language"/>
+        </member>
+        <member name="T:TranslatorService.Speech.GetSpeakStreamEventArgs">
+            <summary>
+            Provides data for the <strong>GetSpeakStreamCompleted</strong> event.
+            </summary>
+            <seealso cref="T:TranslatorService.Speech.SpeechEventArgs"/>
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetSpeakStreamEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>GetSpeakStreamEventArgs</strong> class.
+            </summary>
+        </member>
+        <member name="M:TranslatorService.Speech.GetSpeakStreamEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetSpeakStreamEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+        </member>
+        <member name="M:TranslatorService.Speech.GetSpeakStreamEventArgs.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <strong>GetSpeakStreamEventArgs</strong> class using the specified <see cref="T:System.IO.Stream"/> object.
+            </summary>
+            <param name="stream">A <see cref="T:System.IO.Stream"/> object that contains a wave-file speaking the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/> method.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetSpeakStreamEventArgs.#ctor(System.IO.Stream,System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetSpeakStreamEventArgs</strong> class using the specified <see cref="T:System.IO.Stream"/> object and <see cref="T:System.Exception"/>.
+            </summary>
+            <param name="stream">A <see cref="T:System.IO.Stream"/> object that contains a wave-file speaking the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/> method.</param>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/>
+        </member>
+        <member name="P:TranslatorService.Speech.GetSpeakStreamEventArgs.Stream">
+            <summary>
+            Gets a <see cref="T:System.IO.Stream"/> object that contains a wave-file speaking the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/> method.
+            </summary>
+            <value>A <see cref="T:System.IO.Stream"/> object that contains a wave-file speaking the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/> method.</value>
+            <see cref="M:TranslatorService.Speech.SpeechSynthesizer.GetSpeakStreamAsync(System.String,System.String)"/>
+        </member>
+        <member name="T:TranslatorService.Speech.DetectLanguageEventArgs">
+            <summary>
+            Provides data for the <strong>DetectLanguageCompleted</strong> event.
+            </summary>
+            <seealso cref="T:TranslatorService.Speech.SpeechEventArgs"/>
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.DetectLanguageEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>DetectLanguageEventArgs</strong> class.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.DetectLanguageEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>DetectLanguageEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.DetectLanguageEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <strong>DetectLanguageEventArgs</strong> class using the specified language code.
+            </summary>
+            <param name="language">A string containing a two-character Language code for the given text.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.DetectLanguageEventArgs.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>DetectLanguageEventArgs</strong> class using the language code and <see cref="T:System.Exception"/>.
+            </summary>
+            <param name="language">A string containing a two-character Language code for the given text.</param>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/>
+        </member>
+        <member name="P:TranslatorService.Speech.DetectLanguageEventArgs.Language">
+            <summary>
+            Gets a string containing a two-character Language code for the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method.
+            </summary>
+            <value>A string containing a two-character Language code for the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/> method.</value>
+            <see cref="M:TranslatorService.Speech.SpeechSynthesizer.DetectLanguageAsync(System.String)"/>
+        </member>
+        <member name="T:TranslatorService.Speech.TranslateEventArgs">
+            <summary>
+            Provides data for the <strong>TranslateCompleted</strong> event.
+            </summary>
+            <seealso cref="T:TranslatorService.Speech.SpeechEventArgs"/>
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.TranslateCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.TranslateEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>TranslateEventArgs</strong> class.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.TranslateEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>TranslateEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.TranslateEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <strong>TranslateEventArgs</strong> class using the specified text.
+            </summary>
+            <param name="translatedText">A string representing the translated text.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="M:TranslatorService.Speech.TranslateEventArgs.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>TranslateEventArgs</strong> class using the specified text and <see cref="T:System.Exception"/>.
+            </summary>
+            <param name="translatedText">A string representing the translated text.</param>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="P:TranslatorService.Speech.TranslateEventArgs.TranslatedText">
+            <summary>
+            Gets the translation of the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/> method.
+            </summary>
+            <value>The translation of the text passed to the <see cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/> method.</value>
+            <see cref="M:TranslatorService.Speech.SpeechSynthesizer.TranslateAsync(System.String,System.String)"/>
+        </member>
+        <member name="T:TranslatorService.Speech.GetLanguagesEventArgs">
+            <summary>
+            Provides data for the <strong>GetLanguagesCompleted</strong> event.
+            </summary>
+            <seealso cref="T:TranslatorService.Speech.SpeechEventArgs"/>
+            <seealso cref="E:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesCompleted"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetLanguagesEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <strong>GetLanguagesEventArgs</strong> class.
+            </summary>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetLanguagesEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetLanguagesEventArgs</strong> class setting the specified <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetLanguagesEventArgs.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <strong>GetLanguagesEventArgs</strong> class using the specified language codes array.
+            </summary>
+            <param name="languages">An array of language codes that are supported for speech synthesis by <strong>Microsoft Translator Service</strong>.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="M:TranslatorService.Speech.GetLanguagesEventArgs.#ctor(System.String[],System.Exception)">
+            <summary>
+            Initializes a new instance of the <strong>GetLanguagesEventArgs</strong> class setting the specified language codes array and <see cref="T:System.Exception"/> object.
+            </summary>
+            <param name="languages">An array of language codes that are supported for speech synthesis by <strong>Microsoft Translator Service</strong>.</param>
+            <param name="error">Any error that occurred during the asynchronous operation.</param>
+            <seealso cref="M:TranslatorService.Speech.SpeechSynthesizer.GetLanguagesAsync"/>
+        </member>
+        <member name="P:TranslatorService.Speech.GetLanguagesEventArgs.Languages">
+            <summary>
+            Gets the list of the language codes supported for speech synthesis by <strong>Microsoft Translator Service</strong>.
+            </summary>
+            <value>Gets the list of the language codes supported for speech synthesis by <strong>Microsoft Translator Service</strong>.</value>
+        </member>
+        <member name="T:TranslatorService.Speech.AdmAccessToken">
+            <summary>
+            Contains the access token that you need to use to access the Microsoft Translator API.
+            </summary> 
+        </member>
+        <member name="P:TranslatorService.Speech.AdmAccessToken.access_token">
+            <summary>
+            The access token that you can use to authenticate you access to the Microsoft Translator API. 
+            </summary>
+        </member>
+        <member name="P:TranslatorService.Speech.AdmAccessToken.token_type">
+            <summary>
+            The format of the access token. Currently, Azure DataMarket returns http://schemas.xmlsoap.org/ws/2009/11/swt-token-profile-1.0, which indicates that a Simple Web Token (SWT) token will be returned.
+            </summary>
+        </member>
+        <member name="P:TranslatorService.Speech.AdmAccessToken.expires_in">
+            <summary>
+            The number of seconds for which the access token is valid.
+            </summary>
+        </member>
+        <member name="P:TranslatorService.Speech.AdmAccessToken.scope">
+            <summary>
+            The domain for which this token is valid. For the Microsoft Translator API, the domain is http://api.microsofttranslator.com.
+            </summary>
+        </member>
+    </members>
+</doc>
