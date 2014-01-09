@@ -84,5 +84,14 @@ namespace HMF_KOMAI_CSHARP
         {
             speaker.CompleteCertificate(user.FirstName);
         }
+
+		private UcommRecord ucommRecord = new UcommRecord();
+		private void startToolStripMenuItem_Click (object sender, EventArgs e) {
+			ucommRecord.StartRec();
+		}
+
+		private void stopToolStripMenuItem_Click (object sender, EventArgs e) {
+			ucommRecord.StopRec();
+		}
     }
 }
