@@ -35,13 +35,14 @@
 			this.authenticationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.trueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.falseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.lblUserStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pbxMainCamera = new System.Windows.Forms.PictureBox();
 			this.lblUserGuide = new System.Windows.Forms.Label();
-			this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.voiceMemoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbxMainCamera)).BeginInit();
@@ -103,6 +104,31 @@
 			this.falseToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
 			this.falseToolStripMenuItem.Text = "False";
 			// 
+			// recordToolStripMenuItem
+			// 
+			this.recordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem,
+            this.stopToolStripMenuItem,
+            this.voiceMemoToolStripMenuItem});
+			this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
+			this.recordToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+			this.recordToolStripMenuItem.Text = "VoiceRecord";
+			// 
+			// startToolStripMenuItem
+			// 
+			this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+			this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.startToolStripMenuItem.Text = "Start";
+			this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+			// 
+			// stopToolStripMenuItem
+			// 
+			this.stopToolStripMenuItem.Enabled = false;
+			this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+			this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stopToolStripMenuItem.Text = "Stop";
+			this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -123,7 +149,7 @@
 			// pbxMainCamera
 			// 
 			this.pbxMainCamera.Location = new System.Drawing.Point(8, 26);
-			this.pbxMainCamera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pbxMainCamera.Margin = new System.Windows.Forms.Padding(2);
 			this.pbxMainCamera.Name = "pbxMainCamera";
 			this.pbxMainCamera.Size = new System.Drawing.Size(480, 400);
 			this.pbxMainCamera.TabIndex = 2;
@@ -142,28 +168,12 @@
 			this.lblUserGuide.TabIndex = 3;
 			this.lblUserGuide.Text = "label1";
 			// 
-			// recordToolStripMenuItem
+			// voiceMemoToolStripMenuItem
 			// 
-			this.recordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem,
-            this.stopToolStripMenuItem});
-			this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-			this.recordToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-			this.recordToolStripMenuItem.Text = "VoiceRecord";
-			// 
-			// startToolStripMenuItem
-			// 
-			this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-			this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.startToolStripMenuItem.Text = "Start";
-			this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-			// 
-			// stopToolStripMenuItem
-			// 
-			this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-			this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.stopToolStripMenuItem.Text = "Stop";
-			this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
+			this.voiceMemoToolStripMenuItem.Name = "voiceMemoToolStripMenuItem";
+			this.voiceMemoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.voiceMemoToolStripMenuItem.Text = "VoiceMemo";
+			this.voiceMemoToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.PlayVoiceMemo);
 			// 
 			// MainForm
 			// 
@@ -205,5 +215,6 @@
 		private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem voiceMemoToolStripMenuItem;
     }
 }

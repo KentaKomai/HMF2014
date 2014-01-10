@@ -51,6 +51,8 @@ namespace HMF_KOMAI_CSHARP
 			Task.Factory.StartNew( mainCameraLoop );
             lblUserGuide.Parent = pbxMainCamera;
             setFormText();
+
+			InitializeVoiceMemo();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,10 +90,32 @@ namespace HMF_KOMAI_CSHARP
 		private UcommRecord ucommRecord = new UcommRecord();
 		private void startToolStripMenuItem_Click (object sender, EventArgs e) {
 			ucommRecord.StartRec();
+			startToolStripMenuItem.Enabled = false;
+			stopToolStripMenuItem.Enabled  = true;
 		}
 
 		private void stopToolStripMenuItem_Click (object sender, EventArgs e) {
 			ucommRecord.StopRec();
+			startToolStripMenuItem.Enabled = true;
+			stopToolStripMenuItem.Enabled  = false;
+
+			InitializeVoiceMemo();
+		}
+
+		private void memoToolStripMenuItem_Click (object sender, EventArgs e) {
+
+		}
+
+		private void InitializeVoiceMemo () {
+			voiceMemoToolStripMenuItem.DropDownItems.Clear();
+			var listVoiceMemo = ucommRecord.GetListVoiceMemo();
+			foreach (var filePath in listVoiceMemo) {
+				voiceMemoToolStripMenuItem.DropDownItems.Add(filePath.ToString());
+			}
+		}
+
+		private void PlayVoiceMemo (object sender, ToolStripItemClickedEventArgs e) {
+			ucommRecord.StartPlay(e.ClickedItem.Text);
 		}
     }
 }
