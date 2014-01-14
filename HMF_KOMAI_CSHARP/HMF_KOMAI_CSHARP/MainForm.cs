@@ -26,24 +26,8 @@ namespace HMF_KOMAI_CSHARP
 		
         public MainForm(User user)
         {
-			heaer = new UcommHearerOne();
-            heaer.Recognition += 
-                delegate(int streamNumber, object streamPosition, SpeechLib.SpeechRecognitionType srt, SpeechLib.ISpeechRecoResult isrr)
-				{
-					string strText = isrr.PhraseInfo.GetText(0, -1, true);
-					Console.WriteLine(strText);
-				};
-			heaer.FalseRecognition +=
-                delegate(int streamNumber, object streamPosition, SpeechLib.ISpeechRecoResult isrr)
-                {
-                    Console.WriteLine("--ERROR!--");
-                };
-			heaer.DictationRecognition +=
-                delegate(int streamNumber, object streamPosition, SpeechLib.SpeechRecognitionType srt, SpeechLib.ISpeechRecoResult isrr)
-                {
-                    string strText = isrr.PhraseInfo.GetText(0, -1, true);
-                };
-
+			heaer = new UcommHearerOne(RecognitionEvent, FalseRecognitionEvent);
+            SetHearerEvent();
             this.user = user;
             this.speaker = new UcommSpeaker();
             InitializeComponent();
@@ -53,6 +37,15 @@ namespace HMF_KOMAI_CSHARP
             setFormText();
 
 			InitializeVoiceMemo();
+        }
+
+        private void SetHearerEvent()
+        {
+        }
+
+        private void SetHeaerInstance(string matchKeyword)
+        {
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,8 +107,74 @@ namespace HMF_KOMAI_CSHARP
 			}
 		}
 
+        private void RecognitionEvent(int streamNumber, object streamPosition, SpeechLib.SpeechRecognitionType srt, SpeechLib.ISpeechRecoResult isr)
+        {
+            string strText = isr.PhraseInfo.GetText(0, -1, true);
+            if (this.heaer.GetType().Name == "UcommHearerOne")
+            {
+                if (strText == "検索")
+                {
+                    Console.WriteLine("One : " + strText);
+                    this.heaer = new UcommHearerTwoSearch(RecognitionEvent, FalseRecognitionEvent);
+                }
+                else if (strText == "メモ")
+                {
+                    Console.WriteLine("One : " + strText);
+                    this.heaer = new UcommHearerTwoMemo(RecognitionEvent, FalseRecognitionEvent);
+                }
+                else if (strText == "終了")
+                {
+                    Application.Exit();
+                }
+
+            }
+            else if (this.heaer.GetType().Name == "UcommHearerTwoSearch")
+            {
+                Console.WriteLine("TwoSearch : " + strText);
+                if (strText == "検索")
+                {
+
+                }
+                else if (strText == "履歴")
+                {
+
+                }
+                else if (strText == "戻る")
+                {
+                    this.heaer = new UcommHearerOne(RecognitionEvent, FalseRecognitionEvent);
+
+                }
+
+            }
+            else if (this.heaer.GetType().Name == "UcommHearerTwoMemo")
+            {
+                Console.WriteLine("TwoMemo");
+                if (strText == "登録")
+                {
+
+                }
+                else if (strText == "一覧")
+                {
+
+                }
+                else if (strText == "登録")
+                {
+
+                }
+                else if (strText == "戻る")
+                {
+                    this.heaer = new UcommHearerOne(RecognitionEvent, FalseRecognitionEvent);
+                }
+            }
+        }
+
 		private void PlayVoiceMemo (object sender, ToolStripItemClickedEventArgs e) {
 			ucommRecord.StartPlay(e.ClickedItem.Text);
 		}
+
+        private void FalseRecognitionEvent(int streamNumber, object streamPosition, SpeechLib.ISpeechRecoResult isrr)
+        {
+            Console.WriteLine("FALSE RECOG");
+        }
     }
 }

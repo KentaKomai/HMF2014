@@ -28,7 +28,6 @@ namespace HMF_KOMAI_CSHARP.Services
         //中継するデリゲート
         abstract public event _ISpeechRecoContextEvents_RecognitionEventHandler Recognition;           //認識完了時
         abstract public event _ISpeechRecoContextEvents_FalseRecognitionEventHandler FalseRecognition; //認識失敗時
-        abstract public event _ISpeechRecoContextEvents_RecognitionEventHandler DictationRecognition;  //Dictationの認識完了時
 
 
 		static public SpeechLib.SpObjectToken CreateMicrofon()

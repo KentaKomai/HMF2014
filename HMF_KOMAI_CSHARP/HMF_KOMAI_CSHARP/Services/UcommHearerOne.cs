@@ -15,10 +15,19 @@ namespace HMF_KOMAI_CSHARP.Services
 		//中継するデリゲート
         override public event _ISpeechRecoContextEvents_RecognitionEventHandler Recognition;           //認識完了時
         override public event _ISpeechRecoContextEvents_FalseRecognitionEventHandler FalseRecognition; //認識失敗時
-        override public event _ISpeechRecoContextEvents_RecognitionEventHandler DictationRecognition;  //Dictationの認識完了時
 
-        public UcommHearerOne()
+        public List<string> keywordList = new List<string>();
+        public List<AbstractUcommHearer> composits = new List<AbstractUcommHearer>();
+
+        public UcommHearerOne(_ISpeechRecoContextEvents_RecognitionEventHandler rec, _ISpeechRecoContextEvents_FalseRecognitionEventHandler falseRec)
         {
+            this.Recognition = rec;
+            this.FalseRecognition = falseRec;
+
+            keywordList.Add("終了");	// 0
+            keywordList.Add("検索");	// 1
+            keywordList.Add("メモ");	// 2
+
             //ルール認識 音声認識オブジェクトの生成
             this.RecognizerRule = new SpeechLib.SpInProcRecoContext();
             this.RecognizerDictation = new SpeechLib.SpInProcRecoContext();
@@ -51,7 +60,6 @@ namespace HMF_KOMAI_CSHARP.Services
                     //マッチした文字列の記録
                     this.DictationString = isrr.PhraseInfo.GetText(0, -1, true);
                     //コールバック用のデリゲートを呼ぶ.(これくらいあってもいいかな)
-                    this.DictationRecognition(streamNumber, streamPosition, srt, isrr);
                 };
 
             //言語モデルの作成
@@ -60,9 +68,9 @@ namespace HMF_KOMAI_CSHARP.Services
             //言語モデルのルールのトップレベルを作成する.
             this.RecognizerGrammarRuleGrammarRule = this.RecognizerGrammarRule.Rules.Add("TopLevelRule", SpeechRuleAttributes.SRATopLevel | SpeechRuleAttributes.SRADynamic);
 
-			this.RecognizerGrammarRuleGrammarRule.InitialState.AddWordTransition(null, "検索");
-            this.RecognizerGrammarRuleGrammarRule.InitialState.AddWordTransition(null, "メモ");
-            this.RecognizerGrammarRuleGrammarRule.InitialState.AddWordTransition(null, "終了");
+			foreach(var k in keywordList){
+				this.RecognizerGrammarRuleGrammarRule.InitialState.AddWordTransition(null, k);
+            }
 
             //ルールを反映させる。
             this.RecognizerGrammarRule.Rules.Commit();
