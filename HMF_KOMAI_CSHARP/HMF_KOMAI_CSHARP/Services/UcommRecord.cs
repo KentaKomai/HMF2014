@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -25,19 +26,21 @@ namespace HMF_KOMAI_CSHARP.Services {
 		}
 
 		/// <summary>
-		/// 録音終了・任意場所への保存処理
+		/// 録音終了・指定場所への保存処理
 		/// </summary>
+		private const string saveDir = @"C:\HME_VOICE_MEMO\";
 		public void StopRec () {
 			mciSendString("stop " + micDeviceName);
 
-			var date = DateTime.Now.ToString("yyyy-MM-dd");
-			var saveVoiceMemo    = new SaveFileDialog();
-			saveVoiceMemo.Filter = "Waveファイル(.wav)|*.wav";
+			var date     = DateTime.Now.ToString("yyyy-MM-dd");
+			var fileName = saveDir + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".wav";
 
-			if (saveVoiceMemo.ShowDialog() == DialogResult.OK) {
-				mciSendString("save " + micDeviceName + " \"" + saveVoiceMemo.FileName + "\"");
-				InsertVoiceMemo(date, saveVoiceMemo.FileName);
+			if (!Directory.Exists(saveDir)) {
+				Directory.CreateDirectory(saveDir);
 			}
+
+			mciSendString("save " + micDeviceName + " \"" + fileName + "\"");
+			InsertVoiceMemo(date, fileName);
 
 			mciSendString("close " + micDeviceName);
 		}

@@ -115,7 +115,9 @@ namespace HMF_KOMAI_CSHARP
 		}
 
 		private void PlayVoiceMemo (object sender, ToolStripItemClickedEventArgs e) {
-			ucommRecord.StartPlay(e.ClickedItem.Text);
+			var task = Task.Factory.StartNew(() => {
+				ucommRecord.StartPlay(e.ClickedItem.Text);
+			});
 		}
     }
 }
