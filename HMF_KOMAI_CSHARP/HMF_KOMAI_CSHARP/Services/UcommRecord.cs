@@ -46,7 +46,7 @@ namespace HMF_KOMAI_CSHARP.Services {
 		}
 
 		/// <summary>
-		/// 再生開始（再生終わるまで次操作不能）
+		/// 再生開始。必ず非同期で呼び出す
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void StartPlay (string filePath) {
